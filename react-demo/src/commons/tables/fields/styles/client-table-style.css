@@ -1,0 +1,61 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 1rem;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  overflow: scroll;
+}
+
+th,
+td {
+  border: 1px solid #ffffff;
+  text-align: left;
+  padding: 8px;
+  font-size: 20px;
+}
+
+th {
+  background-color: rgb(74, 124, 87);
+}
+
+td {
+  background-color: rgba(163, 199, 170, 0.842);
+}
+
+
+button {
+  background-color: rgb(91, 124, 30);
+  color: whitesmoke;
+  border-radius: 10px !important;
+  border: none;
+
+}
+
+.bind-button {
+  background-color: rgb(91, 124, 30);
+  color: whitesmoke;
+  border-radius: 10px !important;
+  border: none;
+
+}
+
+form {
+  display: flex;
+  gap: 5px;
+}
+
+form td:last-child {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+form * {
+  font-size: 18px;
+  border-radius: 6px;
+
+}

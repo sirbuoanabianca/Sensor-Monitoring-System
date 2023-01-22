@@ -1,0 +1,44 @@
+version: '2.1'
+services:
+
+
+  backend:
+    image: ds-2020.jar
+    ports:
+      - "8080:8080"
+    depends_on:
+       db:
+          condition: service_healthy
+
+    container_name: backend_container
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5431/energy-consumption
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+  db:
+    image: postgres
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "postgres" ]
+      timeout: 45s
+      interval: 20s
+      retries: 5
+    ports:
+      - "5432:5432"
+    container_name: database
+    environment:
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=energy-consumption
+      - POSTGRES_HOST_AUTH_METHOD=trust
+
+
+  energy_platform_app:
+    image:  energy-platform-frontend
+    restart: always
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    container_name: frontend_container
